@@ -8,7 +8,6 @@ var systemDefault = "light"
 // } else {
 //     systemDefault = "dark";
 // }
-
 // use user preference if possible
 var savedTheme = localStorage.getItem("dark-mode-storage") || systemDefault;
 setTheme(savedTheme);
