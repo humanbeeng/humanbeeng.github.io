@@ -1,1 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml"><url><loc>http://n7j.in/posts/another-test/</loc><lastmod>2023-11-23T00:26:59+05:30</lastmod></url><url><loc>http://n7j.in/</loc><lastmod>2023-11-23T00:26:59+05:30</lastmod></url><url><loc>http://n7j.in/posts/</loc><lastmod>2023-11-23T00:26:59+05:30</lastmod></url><url><loc>http://n7j.in/posts/test/</loc><lastmod>2023-11-23T00:09:14+05:30</lastmod></url><url><loc>http://n7j.in/categories/</loc></url><url><loc>http://n7j.in/tags/</loc></url></urlset>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>http://n7j.in/root/</loc>
+    <lastmod>2023-11-23T00:48:33+05:30</lastmod>
+  </url><url>
+    <loc>http://n7j.in/</loc>
+    <lastmod>2023-11-23T00:26:59+05:30</lastmod>
+  </url><url>
+    <loc>http://n7j.in/posts/another-test/</loc>
+    <lastmod>2023-11-23T00:26:59+05:30</lastmod>
+  </url><url>
+    <loc>http://n7j.in/posts/</loc>
+    <lastmod>2023-11-23T00:26:59+05:30</lastmod>
+  </url><url>
+    <loc>http://n7j.in/posts/test/</loc>
+    <lastmod>2023-11-23T00:09:14+05:30</lastmod>
+  </url><url>
+    <loc>http://n7j.in/about/features/</loc>
+  </url><url>
+    <loc>http://n7j.in/about/</loc>
+  </url><url>
+    <loc>http://n7j.in/tags/</loc>
+  </url>
+</urlset>
