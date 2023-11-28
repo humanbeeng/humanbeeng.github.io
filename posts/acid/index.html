@@ -8,8 +8,8 @@
 
 		<meta name="description" content="#database #system
 Atomicity A transaction is a single unit of execution. Statements within a transaction are either all executed or none.
-Isolation Isolation levels
-Read uncommitted Read committed Repeatable read: transaction will make sure that when a query reads a value, it remains unchanged throughout the transaction. This is to prevent non repeatable reads Snapshot: Repeatable read locks the rows it reads until the end of the transaction, while snapshot isolation allows other transactions to read and write, but each transaction gets a consistent snapshot.">
+Isolation Transactions are executed independently of one another.
+Isolation levels Read uncommitted Read committed Repeatable read: transaction will make sure that when a query reads a value, it remains unchanged throughout the transaction. This is to prevent non repeatable reads Snapshot: Repeatable read locks the rows it reads until the end of the transaction, while snapshot isolation allows other transactions to read and write, but each transaction gets a consistent snapshot.">
 
 
 		
@@ -66,10 +66,11 @@ Read uncommitted Read committed Repeatable read: transaction will make sure tha
 <hr class="sep" />
 </header>
 	<p>#database #system</p>
-<p><strong>Atomicity</strong>
-A transaction is a single unit of execution. Statements within a transaction are either all executed or none.</p>
-<p><strong>Isolation</strong>
-<strong>Isolation levels</strong></p>
+<h4 id="atomicity">Atomicity</h4>
+<p>A transaction is a single unit of execution. Statements within a transaction are either all executed or none.</p>
+<h4 id="isolation">Isolation</h4>
+<p>Transactions are executed independently of one another.</p>
+<h5 id="isolation-levels">Isolation levels</h5>
 <ul>
 <li><strong>Read uncommitted</strong> </li>
 <li><strong>Read committed</strong></li>
@@ -105,8 +106,8 @@ In the case of a write-write conflict in an optimistic concurrency control model
 <li><strong>Random Selection:</strong> A random selection mechanism might be employed to choose which transaction to roll back.</li>
 </ul>
 <p>The specific choice of a conflict resolution policy depends on the application&rsquo;s requirements and the desired behaviour in case of conflicts. Each policy has its own trade-offs, and choosing the most appropriate one often involves considering factors such as fairness, performance, and the nature of the application&rsquo;s data and business logic.</p>
-<p><strong>Consistency</strong>
-There is</p>
+<h4 id="consistency">Consistency</h4>
+<p>There is</p>
 <ol>
 <li>Consistency in data: Data is just persisted wrong.</li>
 <li>Consistency in reads: Data is just read wrong. </li>
@@ -122,7 +123,7 @@ There is</p>
 <li>If a transaction writes something, is it available instantly for read?</li>
 <li>Affects system as a whole.</li>
 </ul>
-<p><strong>Durability</strong> </p>
+<h4 id="durability">Durability</h4>
 <ul>
 <li>Committed transactions should be persisted.
 Techniques </li>
