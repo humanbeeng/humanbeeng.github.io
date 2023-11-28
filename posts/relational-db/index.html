@@ -135,27 +135,27 @@ Example: Geographical sharding, but other region data is available through repli
 For high availability and scaling writes 
 Complex, data conflicts, sync issues. 
 Conflicts example: ID generation </p>
-<p><strong>Why RDMS systems do not scale</strong>
-<strong>Read replica setup</strong>
-<strong>Synchronous</strong>: Slow writes since writes needs to be propagated to all replicas
-<strong>Asynchronous</strong>: Replicas are not in sync with master</p>
-<p><strong>Multi master setup</strong>
-Consistency</p>
-<p><strong>Normalisation</strong>
-Normalised days won’t help.
-Up to certain limit joins provide good flexibility. Then, they don’t scale. Because joins are super expensive. 
+<p><strong>Why RDMS systems do not scale</strong></p>
+<p><strong>Read replica setup</strong></p>
+<p><strong>Synchronous</strong>: Slow writes since writes needs to be propagated to all replicas</p>
+<p><strong>Asynchronous</strong>: Replicas are not in sync with master</p>
+<p><strong>Multi master setup</strong></p>
+<p>Consistency takes a hit.</p>
+<p><strong>Normalisation</strong></p>
+<p>Normalised days won’t help.</p>
+<p>Up to certain limit joins provide good flexibility. Then, they don’t scale. Because joins are super expensive. 
 Later on, to avoid joins, we’d have to add data redundancies and move back from 3NF: Denormalise.</p>
-<p><strong>Links</strong>
-<a href="https://www.youtube.com/watch?v=wXvljefXyEo">Sharding vs Partitioning</a>
-<a href="https://www.youtube.com/watch?v=-YxWRxOFgRY&amp;list=PLsdq-3Z1EPT2C-Da7Jscr7NptGcIZgQ2l&amp;pp=iAQB">Database Engineering - Arpit</a></p>
+<p><strong>Links</strong></p>
+<p><a href="https://www.youtube.com/watch?v=wXvljefXyEo">Sharding vs Partitioning</a></p>
+<p><a href="https://www.youtube.com/watch?v=-YxWRxOFgRY&amp;list=PLsdq-3Z1EPT2C-Da7Jscr7NptGcIZgQ2l&amp;pp=iAQB">Database Engineering - Arpit</a></p>
 <p>ProxySQL is used to load balance sharded databases. </p>
-<p><strong>Pagination</strong>
-Pagination is usually done by passing the range that we require. <strong>Limit offset pagination</strong>
+<p><strong>Pagination</strong></p>
+<p>Pagination is usually done by passing the range that we require. <strong>Limit offset pagination</strong>
 It can also be done by passing the last ID of data that was returned to the user. <strong>Last key pagination</strong></p>
 <p><em>Twitter, DynamoDB</em> 
 <em>Intelligent load balancer</em></p>
-<p><strong>Database choice</strong>
-Postgres is great for analysis and cache handling than MySQL
+<p><strong>Database choice</strong></p>
+<p>Postgres is great for analysis and cache handling than MySQL
 General purpose: MySQL </p>
 <p><strong>Incremental adaptation</strong>
 ORM -&gt; Raw SQL -&gt; stored procedures</p>
