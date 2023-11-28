@@ -7,8 +7,18 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; 2023 Nithin Raj</copyright>
-    <lastBuildDate>Thu, 23 Nov 2023 15:00:31 +0530</lastBuildDate>
+    <lastBuildDate>Tue, 28 Nov 2023 11:46:32 +0530</lastBuildDate>
     <atom:link href="http://n7j.in/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ACID</title>
+      <link>http://n7j.in/posts/acid/</link>
+      <pubDate>Tue, 28 Nov 2023 11:46:32 +0530</pubDate>
+      <guid>http://n7j.in/posts/acid/</guid>
+      <description>#database #system
+Atomicity A transaction is a single unit of execution. Statements within a transaction are either all executed or none.
+Isolation Isolation levels
+Read uncommitted Read committed Repeatable read: transaction will make sure that when a query reads a value, it remains unchanged throughout the transaction. This is to prevent non repeatable reads Snapshot: Repeatable read locks the rows it reads until the end of the transaction, while snapshot isolation allows other transactions to read and write, but each transaction gets a consistent snapshot.</description>
+    </item>
     <item>
       <title>Hello World</title>
       <link>http://n7j.in/posts/hello-world/</link>
