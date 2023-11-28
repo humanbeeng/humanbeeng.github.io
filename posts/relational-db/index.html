@@ -1,0 +1,58 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=generator content="Hugo 0.120.4"><title>Relational Db - Nithin Raj</title>
+<meta name=description content="Relational database #system #interview #database #relational-database
+Normal forms 1,2,3NF Transactions ACID
+Atomicity Each transaction is a single unit of execution Consistency Database goes from one valid state to another Durability Once committed, data is recoverable even after system failure Isolation Each transaction run independently. Database does not guarantees isolation, but rather provides tools to ensure isolation.
+Database indexes Types of index implementations Primary index Clustered index Partial index (for subset of rows) Composite index Secondary index Improves lookup performance Decreases write performance since index table also has to be written."><link rel=stylesheet href=/css/ui.css><script defer src=/js/dark-mode.js></script><link disabled id=dark-mode-theme rel=stylesheet href=/css/dark.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Fira+Mono|Lato|Raleway"><link rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/nord.min.css><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/go.min.js></script></head><body><header class="container no-print"><div class=u-header><nav class=bar><ul><li><a href=/><img class=icon-text src=/img/prev.svg></a></li><li><img class=icon-text id=dark-mode-toggle src=/img/moon-regular.svg alt="Toggle Dark Mode"></a></li><li><a href=/about>About</a></li><li><a href=/posts/>Posts</a></li></ul></nav></div></header><main class=container><article><header><hgroup id=brand><h1>Relational Db</h1><h5><time datetime="2023-11-28 11:57:59 +0530 IST">Nov 28, 2023</time>
+<span class=no-print><span></h5></hgroup><hr class=sep></header><h1 id=relational-database>Relational database</h1><p>#system #interview #database #relational-database</p><p><strong>Normal forms</strong>
+1,2,3NF
+<strong>Transactions</strong>
+ACID</p><p><strong>Atomicity</strong> 
+Each transaction is a single unit of execution
+<strong>Consistency</strong>
+Database goes from one valid state to another
+<strong>Durability</strong>
+Once committed, data is recoverable even after system failure
+<strong>Isolation</strong>
+Each transaction run independently. Database does not guarantees isolation, but rather provides tools to ensure isolation.</p><h4 id=database-indexes>Database indexes</h4><p>Types of index implementations </p><ol><li>Primary index</li><li>Clustered index</li><li>Partial index (for subset of rows)</li><li>Composite index</li><li>Secondary index 
+Improves lookup performance 
+Decreases write performance since index table also has to be written.</li></ol><p><em>Learn about serialisation and internals of B+ Trees</em> </p><h4 id=database-locking>Database locking** </h4><p><strong>Read lock/Shared lock</strong>
+When acquired, other transactions can read the locked rows, but cannot modify.
+<strong>Write lock</strong>
+Other transactions can’t even read/write locked data
+Locks can be acquired on</p><ul><li>Table</li><li>Row</li><li>Column</li><li>Page</li></ul><p>With locks, there exists possibility of deadlock 
+If database engine detects deadlock possibility, it kills the transaction which the deadlock was detected.
+Always try to lock data related stuff at database level itself. Application level locks should be the last option</p><p><em>Distributed locks</em> exists, they are expensive</p><p><strong>Syntax for read lock</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=line><span class=cl><span class=k>SELECT</span><span class=w> </span><span class=err>…</span><span class=p>..</span><span class=w> </span><span class=k>FOR</span><span class=w> </span><span class=k>SHARE</span><span class=p>;</span><span class=w>
+</span></span></span></code></pre></div><p><strong>Syntax for write lock</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=line><span class=cl><span class=k>SELECT</span><span class=w> </span><span class=err>…</span><span class=p>..</span><span class=w> </span><span class=k>FOR</span><span class=w> </span><span class=k>UPDATE</span><span class=p>;</span><span class=w>
+</span></span></span></code></pre></div><h4 id=_isolation-levels_><em>Isolation levels</em></h4><ul><li>Read committed </li><li>Read uncommitted</li><li>Serialisable</li></ul><p><strong>Dealing with locked rows</strong>
+<strong>NOWAIT</strong>
+Transaction does not wait for locks to be released by other transaction. It just fails itself immediately. </p><p><strong>SKIP LOCKED</strong>
+Transaction just acquires lock on the unlocked rows, performs transaction on unlocked rows and skips the ones which are locked.</p><h4 id=scaling-relational-database>Scaling relational database**</h4><p><strong>Read replicas</strong>
+As name suggests
+What is master goes down?
+Replica takes over. 
+There will be replica lag if replica is present in other region.</p><p><strong>Sharding</strong> 
+Possible only if data is shardable.
+Sharding with replicas is also possible
+Example: Geographical sharding, but other region data is available through replication</p><p><strong>Multi master setup</strong>
+For high availability and scaling writes 
+Complex, data conflicts, sync issues. 
+Conflicts example: ID generation </p><p><strong>Why RDMS systems do not scale</strong>
+<strong>Read replica setup</strong>
+<strong>Synchronous</strong>: Slow writes since writes needs to be propagated to all replicas
+<strong>Asynchronous</strong>: Replicas are not in sync with master</p><p><strong>Multi master setup</strong>
+Consistency</p><p><strong>Normalisation</strong>
+Normalised days won’t help.
+Up to certain limit joins provide good flexibility. Then, they don’t scale. Because joins are super expensive. 
+Later on, to avoid joins, we’d have to add data redundancies and move back from 3NF: Denormalise.</p><p><strong>Links</strong>
+<a href="https://www.youtube.com/watch?v=wXvljefXyEo">Sharding vs Partitioning</a>
+<a href="https://www.youtube.com/watch?v=-YxWRxOFgRY&amp;list=PLsdq-3Z1EPT2C-Da7Jscr7NptGcIZgQ2l&amp;pp=iAQB">Database Engineering - Arpit</a></p><p>ProxySQL is used to load balance sharded databases. </p><p><strong>Pagination</strong>
+Pagination is usually done by passing the range that we require. <strong>Limit offset pagination</strong>
+It can also be done by passing the last ID of data that was returned to the user. <strong>Last key pagination</strong></p><p><em>Twitter, DynamoDB</em> 
+<em>Intelligent load balancer</em></p><p><strong>Database choice</strong>
+Postgres is great for analysis and cache handling than MySQL
+General purpose: MySQL </p><p><strong>Incremental adaptation</strong>
+ORM -> Raw SQL -> stored procedures</p><h5 id=hash-lookups-in-relational-database>Hash lookups in Relational database</h5><p>In a database, indexes are typically looked up using a data structure called a B-tree (balanced tree), rather than binary search or hash functions.</p><p>A B-tree is a self-balancing tree structure that maintains sorted data and allows for efficient insertion, deletion, and search operations. B-trees are well-suited for databases because they provide logarithmic time complexity for search operations, making it efficient to find a specific value in a large dataset.</p><p>Here&rsquo;s a simplified overview of how a B-tree works for index lookups:</p><ol><li><strong>Root Node:</strong> The topmost node of the tree contains key values and pointers to child nodes.</li><li><strong>Intermediate Nodes:</strong> Intermediate nodes in the tree also contain key values and pointers to child nodes, forming a hierarchy.</li><li><strong>Leaf Nodes:</strong> The bottom-level nodes (leaves) contain key values and pointers to the actual data records or additional levels of the index.</li></ol><p>When you perform a search, the database engine starts at the root node and traverses down the tree, comparing the search key with the keys in each node. Based on the comparison, it decides whether to move to the left or right child node. This process continues until the leaf node is reached, where the actual location of the data is found.</p><p>Hash functions are more commonly used in hash indexes, which are different from B-trees. Hash indexes use a hash function to map keys to specific locations (buckets) directly. <strong>While hash indexes can provide fast lookups, they may not perform as well for range queries or ordered traversal compared to B-trees</strong>.</p><p>In summary, databases often use B-trees for index lookups due to their efficiency in handling range queries and maintaining order, while hash indexes may be used in specific cases where direct key-to-location mapping is advantageous.</p></article><nav class="no-print post-nav"><a class=prev-post href=http://n7j.in/posts/acid/><img class=icon-text src=/img/prev.svg>ACID</a></nav><hr class=sep></main><footer class="container no-print"><div class=u-footer><a href=mailto:heynithin@skiff.com><img class=icon-social src=/img/email.svg alt="Email Me!"></a>
+<a href=https://github.com/humanbeeng/><img class=icon-social src=/img/github.svg alt=Github></a>
+<a href=https://twitter.com/nithinrajx><img class=icon-social src=/img/twitter.svg alt=Twitter></a><p>&copy; 2023 Nithin Raj
+| <a href=/about/license>License</a></p><a href=#brand><img class=icon-text src=/img/toup.svg alt="To Up">
+<span>Back to Up</span></a></div></footer><script>hljs.initHighlightingOnLoad()</script></body></html>
