@@ -1,21 +1,189 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=generator content="Hugo 0.120.4"><title>ACID - Nithin Raj</title>
-<meta name=description content="#database #system
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="generator" content="Hugo 0.120.4">
+		<title>ACID - Nithin Raj</title>
+
+		<meta name="description" content="#database #system
 Atomicity A transaction is a single unit of execution. Statements within a transaction are either all executed or none.
 Isolation Transactions are executed independently of one another.
-Isolation levels Read uncommitted Read committed Repeatable read: transaction will make sure that when a query reads a value, it remains unchanged throughout the transaction. This is to prevent non repeatable reads Snapshot: Repeatable read locks the rows it reads until the end of the transaction, while snapshot isolation allows other transactions to read and write, but each transaction gets a consistent snapshot."><link rel=stylesheet href=/css/ui.css><script defer src=/js/dark-mode.js></script><link disabled id=dark-mode-theme rel=stylesheet href=/css/dark.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Fira+Mono|Lato|Raleway"><link rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/nord.min.css><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/go.min.js></script></head><body><header class="container no-print"><div class=u-header><nav class=bar><ul><li><a href=/><img class=icon-text src=/img/prev.svg></a></li><li><img class=icon-text id=dark-mode-toggle src=/img/moon-regular.svg alt="Toggle Dark Mode"></a></li><li><a href=/about>About</a></li><li><a href=/posts/>Posts</a></li></ul></nav></div></header><main class=container><article><header><hgroup id=brand><h1>ACID</h1><h5><time datetime="2023-11-28 11:46:32 +0530 IST">Nov 28, 2023</time>
-<span class=no-print><span></h5></hgroup><hr class=sep></header><p>#database #system</p><h4 id=atomicity>Atomicity</h4><p>A transaction is a single unit of execution. Statements within a transaction are either all executed or none.</p><h4 id=isolation>Isolation</h4><p>Transactions are executed independently of one another.</p><h5 id=isolation-levels>Isolation levels</h5><ul><li><strong>Read uncommitted</strong> </li><li><strong>Read committed</strong></li><li><strong>Repeatable read</strong>: transaction will make sure that when a query reads a value, it remains unchanged throughout the transaction. This is to prevent non repeatable reads </li><li><strong>Snapshot</strong>: Repeatable read <strong>locks the rows</strong> it reads until the end of the transaction, while snapshot isolation <strong>allows other transactions to read and write</strong>, but each transaction gets a consistent snapshot. In Postgres, repeatable read is implemented using snapshot, so they both are the same in Postgres. Hence there is no phantom reads in RR level in Postgres. But in MySQL, in repeatable read, phantom reads problem will exist.</li><li><strong>Serialisable</strong>: Each transaction run as if they are run one after the other. Slowest of all. No concurrency. But usually database engines does serialisable in Optimistic way or else it’d have been so slow. We can also do it pessimistically</li></ul><p>Non repeatable reads: Happens when other transaction <strong>updates an already read rows.</strong></p><p>Phantom reads: Happens when new row appears after reading all rows before. Due to insert</p><p><strong>Database implementation of isolation</strong></p><p><strong>Pessimistic</strong>
-Through locks. To avoid lost updates. Expensive</p><p><strong>Optimistic</strong>
+Isolation levels Read uncommitted Read committed Repeatable read: transaction will make sure that when a query reads a value, it remains unchanged throughout the transaction. This is to prevent non repeatable reads Snapshot: Repeatable read locks the rows it reads until the end of the transaction, while snapshot isolation allows other transactions to read and write, but each transaction gets a consistent snapshot.">
+
+
+		
+	
+		
+
+
+
+
+<link rel="stylesheet" href="/css/ui.css">
+
+	
+		
+
+		<script defer src="/js/dark-mode.js"></script>
+		<link disabled id="dark-mode-theme" rel="stylesheet" href="/css/dark.css">
+		<link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono|Lato|Raleway">
+
+		
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/nord.min.css">
+		<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+		
+		<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/go.min.js"></script>
+		
+		
+	</head>
+
+<body>
+<header class="container no-print">
+	<div class="u-header">
+		<nav class="bar">
+	<ul><li>
+			<a href="/">
+				<img class="icon-text" src="/img/prev.svg"/>
+			</a>
+		</li><li><img class="icon-text" id="dark-mode-toggle" src="/img/moon-regular.svg" alt="Toggle Dark Mode"></a></li><li><a href="/about">About</a></li><li><a href="/posts/">Posts</a></li></ul>
+</nav>
+
+	</div>
+</header>
+<main class="container">
+
+<article>
+	<header><hgroup id="brand">
+	<h1>ACID</h1>
+	<h5>
+		
+		<time datetime="2023-11-28 11:46:32 &#43;0530 IST">Nov 28, 2023</time>
+		<span class="no-print">
+			<span>
+	</h5>
+	
+</hgroup>
+<hr class="sep" />
+</header>
+	<p>#database #system</p>
+<h4 id="atomicity">Atomicity</h4>
+<p>A transaction is a single unit of execution. Statements within a transaction are either all executed or none.</p>
+<h4 id="isolation">Isolation</h4>
+<p>Transactions are executed independently of one another.</p>
+<h5 id="isolation-levels">Isolation levels</h5>
+<ul>
+<li><strong>Read uncommitted</strong> </li>
+<li><strong>Read committed</strong></li>
+<li><strong>Repeatable read</strong>: transaction will make sure that when a query reads a value, it remains unchanged throughout the transaction. This is to prevent non repeatable reads </li>
+<li><strong>Snapshot</strong>: Repeatable read <strong>locks the rows</strong> it reads until the end of the transaction, while snapshot isolation <strong>allows other transactions to read and write</strong>, but each transaction gets a consistent snapshot. In Postgres, repeatable read is implemented using snapshot, so they both are the same in Postgres. Hence there is no phantom reads in RR level in Postgres. But in MySQL, in repeatable read, phantom reads problem will exist.</li>
+<li><strong>Serialisable</strong>: Each transaction run as if they are run one after the other. Slowest of all. No concurrency. But usually database engines does serialisable in Optimistic way or else it’d have been so slow. We can also do it pessimistically</li>
+</ul>
+<p>Non repeatable reads: Happens when other transaction <strong>updates an already read rows.</strong></p>
+<p>Phantom reads: Happens when new row appears after reading all rows before. Due to insert</p>
+<p><strong>Database implementation of isolation</strong></p>
+<p><strong>Pessimistic</strong>
+Through locks. To avoid lost updates. Expensive</p>
+<p><strong>Optimistic</strong>
 No locks. Just let the transaction continue. But, it’s going to fail the transaction once the transactions start to step over each other. It’s going to fail the transaction with serialisation error along the user to retry. 
-In an optimistic isolation model, transactions are allowed to proceed without acquiring locks on the data they intend to modify. Instead, potential conflicts are checked only at the time of commit. If a conflict is detected during this check, the transaction fails.</p><p>There are two main types of conflicts that can cause a transaction to fail in an optimistic isolation model:</p><ol><li>Read-Write Conflict:
+In an optimistic isolation model, transactions are allowed to proceed without acquiring locks on the data they intend to modify. Instead, potential conflicts are checked only at the time of commit. If a conflict is detected during this check, the transaction fails.</p>
+<p>There are two main types of conflicts that can cause a transaction to fail in an optimistic isolation model:</p>
+<ol>
+<li>Read-Write Conflict:
    - If a transaction reads a piece of data, and before it commits, another transaction writes to the same data, a read-write conflict occurs.
-   - The first transaction, having based its changes on an outdated read, is now in conflict with the changes made by the second transaction.</li><li>Write-Write Conflict:
+   - The first transaction, having based its changes on an outdated read, is now in conflict with the changes made by the second transaction.</li>
+<li>Write-Write Conflict:
    - If two transactions independently modify the same piece of data and attempt to commit their changes simultaneously, a write-write conflict occurs.
-   - Both transactions are trying to write conflicting changes to the same data, and only one can succeed.</li></ol><p>In either case, when the conflict is detected during the commit phase, the optimistic isolation model requires one of the transactions to fail. Typically, the failing transaction is rolled back, allowing the other transaction to commit its changes successfully.
+   - Both transactions are trying to write conflicting changes to the same data, and only one can succeed.</li>
+</ol>
+<p>In either case, when the conflict is detected during the commit phase, the optimistic isolation model requires one of the transactions to fail. Typically, the failing transaction is rolled back, allowing the other transaction to commit its changes successfully.
 This optimistic approach allows for greater concurrency, as transactions are not blocked during their execution. However, it requires careful handling of conflicts at the time of commit to ensure data consistency.
-In the case of a write-write conflict in an optimistic concurrency control model, where two transactions independently modify the same piece of data and attempt to commit their changes simultaneously, one of the transactions is chosen to be rolled back.</p><p>The decision on which transaction to roll back is typically based on a predefined conflict resolution policy. Common conflict resolution strategies include:</p><ul><li><strong>First-Commit Wins (FCW):</strong> The first transaction that attempts to commit successfully wins, and the subsequent transaction is rolled back. This approach is based on the order of commit attempts.</li><li><strong>Last-Commit Wins (LCW):</strong> The last transaction to commit successfully wins, and any preceding transactions are rolled back. This is based on the principle that the latest change should prevail.</li><li><strong>Priority-Based:</strong> Transactions may have priority levels assigned to them, and the transaction with higher priority may be allowed to commit while the lower-priority transaction is rolled back.</li><li><strong>Random Selection:</strong> A random selection mechanism might be employed to choose which transaction to roll back.</li></ul><p>The specific choice of a conflict resolution policy depends on the application&rsquo;s requirements and the desired behaviour in case of conflicts. Each policy has its own trade-offs, and choosing the most appropriate one often involves considering factors such as fairness, performance, and the nature of the application&rsquo;s data and business logic.</p><h4 id=consistency>Consistency</h4><p>There is</p><ol><li>Consistency in data: Data is just persisted wrong.</li><li>Consistency in reads: Data is just read wrong. </li></ol><p>In Data</p><ul><li>Referential integrity </li><li>Data during transactions </li><li>During failure and recovery </li></ul><p>In Reads</p><ul><li>If a transaction writes something, is it available instantly for read?</li><li>Affects system as a whole.</li></ul><h4 id=durability>Durability</h4><ul><li>Committed transactions should be persisted.
-Techniques </li><li>WAL (Write ahead log): Gets flushed to disk immediately </li><li>Async Snapshot: We keep everything in memory. Then write all to the disk </li><li>Usually write requests goes to OS cache. OS cache then batches the writes. Susceptible to OS crash and machine restart. To bypass this, there is fsync command to force. This of course will be expensive and slow. Crashes rarely happen, but its gonna happen.</li></ul></article><nav class="no-print post-nav"><a class=prev-post href=http://n7j.in/posts/hello-world/><img class=icon-text src=/img/prev.svg>Hello World</a>
-<a class=next-post href=http://n7j.in/posts/relational-db/>Relational Db<img class=icon-text src=/img/next.svg></a></nav><hr class=sep></main><footer class="container no-print"><div class=u-footer><a href=mailto:heynithin@skiff.com><img class=icon-social src=/img/email.svg alt="Email Me!"></a>
-<a href=https://github.com/humanbeeng/><img class=icon-social src=/img/github.svg alt=Github></a>
-<a href=https://twitter.com/nithinrajx><img class=icon-social src=/img/twitter.svg alt=Twitter></a><p>&copy; 2023 Nithin Raj
-| <a href=/about/license>License</a></p><a href=#brand><img class=icon-text src=/img/toup.svg alt="To Up">
-<span>Back to Up</span></a></div></footer><script>hljs.initHighlightingOnLoad()</script></body></html>
+In the case of a write-write conflict in an optimistic concurrency control model, where two transactions independently modify the same piece of data and attempt to commit their changes simultaneously, one of the transactions is chosen to be rolled back.</p>
+<p>The decision on which transaction to roll back is typically based on a predefined conflict resolution policy. Common conflict resolution strategies include:</p>
+<ul>
+<li><strong>First-Commit Wins (FCW):</strong> The first transaction that attempts to commit successfully wins, and the subsequent transaction is rolled back. This approach is based on the order of commit attempts.</li>
+<li><strong>Last-Commit Wins (LCW):</strong> The last transaction to commit successfully wins, and any preceding transactions are rolled back. This is based on the principle that the latest change should prevail.</li>
+<li><strong>Priority-Based:</strong> Transactions may have priority levels assigned to them, and the transaction with higher priority may be allowed to commit while the lower-priority transaction is rolled back.</li>
+<li><strong>Random Selection:</strong> A random selection mechanism might be employed to choose which transaction to roll back.</li>
+</ul>
+<p>The specific choice of a conflict resolution policy depends on the application&rsquo;s requirements and the desired behaviour in case of conflicts. Each policy has its own trade-offs, and choosing the most appropriate one often involves considering factors such as fairness, performance, and the nature of the application&rsquo;s data and business logic.</p>
+<h4 id="consistency">Consistency</h4>
+<p>There is</p>
+<ol>
+<li>Consistency in data: Data is just persisted wrong.</li>
+<li>Consistency in reads: Data is just read wrong. </li>
+</ol>
+<p>In Data</p>
+<ul>
+<li>Referential integrity </li>
+<li>Data during transactions </li>
+<li>During failure and recovery </li>
+</ul>
+<p>In Reads</p>
+<ul>
+<li>If a transaction writes something, is it available instantly for read?</li>
+<li>Affects system as a whole.</li>
+</ul>
+<h4 id="durability">Durability</h4>
+<ul>
+<li>Committed transactions should be persisted.
+Techniques </li>
+<li>WAL (Write ahead log): Gets flushed to disk immediately </li>
+<li>Async Snapshot: We keep everything in memory. Then write all to the disk </li>
+<li>Usually write requests goes to OS cache. OS cache then batches the writes. Susceptible to OS crash and machine restart. To bypass this, there is fsync command to force. This of course will be expensive and slow. Crashes rarely happen, but its gonna happen.</li>
+</ul>
+
+</article>
+<nav class="no-print post-nav">
+
+	<a class="prev-post" href="http://n7j.in/posts/hello-world/">
+		<img class="icon-text" src="/img/prev.svg"/>Hello World</a>
+
+
+	<a class="next-post" href="http://n7j.in/posts/relational-db/">Relational Databases<img class="icon-text" src="/img/next.svg"/>
+	</a>
+
+</nav>
+
+
+
+
+
+			<hr class="sep" />
+		</main>
+		<footer class="container no-print">
+			<div class="u-footer">
+				
+<a href="mailto:heynithin@skiff.com"><img class="icon-social" src="/img/email.svg" alt="Email Me!"/></a>
+
+
+<a href="https://github.com/humanbeeng/"><img class="icon-social" src="/img/github.svg" alt="Github"/></a>
+
+
+<a href="https://twitter.com/nithinrajx"><img class="icon-social" src="/img/twitter.svg" alt="Twitter"/></a>
+
+
+
+				<p>
+					
+					
+					
+					&copy; 2023 Nithin Raj
+					
+					
+					| <a href="/about/license">License</a>
+					
+				</p>
+				
+				<a href="#brand">
+					<img class="icon-text" src="/img/toup.svg" alt="To Up"/>
+					<span>Back to Up</span>
+				</a>
+				
+			</div>
+		</footer>
+		
+		<script>hljs.initHighlightingOnLoad();</script>
+		
+	</body>
+</html>
+

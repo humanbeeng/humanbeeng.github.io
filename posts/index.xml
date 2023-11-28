@@ -1,8 +1,41 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Nithin Raj</title><link>http://n7j.in/posts/</link><description>Recent content in Posts on Nithin Raj</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>&amp;copy; 2023 Nithin Raj</copyright><lastBuildDate>Tue, 28 Nov 2023 11:57:59 +0530</lastBuildDate><atom:link href="http://n7j.in/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Relational Db</title><link>http://n7j.in/posts/relational-db/</link><pubDate>Tue, 28 Nov 2023 11:57:59 +0530</pubDate><guid>http://n7j.in/posts/relational-db/</guid><description>Relational database #system #interview #database #relational-database
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Nithin Raj</title>
+    <link>http://n7j.in/posts/</link>
+    <description>Recent content in Posts on Nithin Raj</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>&amp;copy; 2023 Nithin Raj</copyright>
+    <lastBuildDate>Tue, 28 Nov 2023 11:57:59 +0530</lastBuildDate>
+    <atom:link href="http://n7j.in/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Relational Databases</title>
+      <link>http://n7j.in/posts/relational-db/</link>
+      <pubDate>Tue, 28 Nov 2023 11:57:59 +0530</pubDate>
+      <guid>http://n7j.in/posts/relational-db/</guid>
+      <description>#system #interview #database #relational-database
 Normal forms 1,2,3NF Transactions ACID
 Atomicity Each transaction is a single unit of execution Consistency Database goes from one valid state to another Durability Once committed, data is recoverable even after system failure Isolation Each transaction run independently. Database does not guarantees isolation, but rather provides tools to ensure isolation.
-Database indexes Types of index implementations Primary index Clustered index Partial index (for subset of rows) Composite index Secondary index Improves lookup performance Decreases write performance since index table also has to be written.</description></item><item><title>ACID</title><link>http://n7j.in/posts/acid/</link><pubDate>Tue, 28 Nov 2023 11:46:32 +0530</pubDate><guid>http://n7j.in/posts/acid/</guid><description>#database #system
+Database indexes Types of index implementations Primary index Clustered index Partial index (for subset of rows) Composite index Secondary index Improves lookup performance Decreases write performance since index table also has to be written.</description>
+    </item>
+    <item>
+      <title>ACID</title>
+      <link>http://n7j.in/posts/acid/</link>
+      <pubDate>Tue, 28 Nov 2023 11:46:32 +0530</pubDate>
+      <guid>http://n7j.in/posts/acid/</guid>
+      <description>#database #system
 Atomicity A transaction is a single unit of execution. Statements within a transaction are either all executed or none.
 Isolation Transactions are executed independently of one another.
-Isolation levels Read uncommitted Read committed Repeatable read: transaction will make sure that when a query reads a value, it remains unchanged throughout the transaction. This is to prevent non repeatable reads Snapshot: Repeatable read locks the rows it reads until the end of the transaction, while snapshot isolation allows other transactions to read and write, but each transaction gets a consistent snapshot.</description></item><item><title>Hello World</title><link>http://n7j.in/posts/hello-world/</link><pubDate>Thu, 23 Nov 2023 15:00:31 +0530</pubDate><guid>http://n7j.in/posts/hello-world/</guid><description>Hello world !
-import &amp;#34;fmt&amp;#34; func main() { fmt.Println(&amp;#34;Hello world!&amp;#34;) }</description></item></channel></rss>
+Isolation levels Read uncommitted Read committed Repeatable read: transaction will make sure that when a query reads a value, it remains unchanged throughout the transaction. This is to prevent non repeatable reads Snapshot: Repeatable read locks the rows it reads until the end of the transaction, while snapshot isolation allows other transactions to read and write, but each transaction gets a consistent snapshot.</description>
+    </item>
+    <item>
+      <title>Hello World</title>
+      <link>http://n7j.in/posts/hello-world/</link>
+      <pubDate>Thu, 23 Nov 2023 15:00:31 +0530</pubDate>
+      <guid>http://n7j.in/posts/hello-world/</guid>
+      <description>Hello world !
+import &amp;#34;fmt&amp;#34; func main() { fmt.Println(&amp;#34;Hello world!&amp;#34;) } </description>
+    </item>
+  </channel>
+</rss>
